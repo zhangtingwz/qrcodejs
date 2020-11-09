@@ -539,7 +539,8 @@ var QRCode;
 			typeNumber : 4,
 			colorDark : "#000000",
 			colorLight : "#ffffff",
-			correctLevel : QRErrorCorrectLevel.H
+			correctLevel : QRErrorCorrectLevel.H,
+			callback:null
 		};
 		
 		if (typeof vOption === 'string') {
@@ -569,7 +570,11 @@ var QRCode;
 		this._oDrawing = new Drawing(this._el, this._htOption);
 		
 		if (this._htOption.text) {
-			this.makeCode(this._htOption.text);	
+			this.makeCode(this._htOption.text);
+			if(this._htOption.callback){
+				//create a function() know the qrcode had created then callback a function
+				this._htOption.callback();
+			}
 		}
 	};
 	
